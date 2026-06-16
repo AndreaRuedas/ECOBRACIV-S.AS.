@@ -1,0 +1,600 @@
+ 
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:#1db954;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);border-bottom:1px solid #1a1a1a;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-icon{width:40px;height:40px;background:linear-gradient(135deg,#1db954,#4ade80);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.nav-logo-text strong{display:block;color:#fff;font-size:.95rem;font-weight:800;letter-spacing:.05em;}
+.nav-logo-text small{color:#1db954;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;}
+.nav-links{display:flex;gap:4px;}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.82rem;font-weight:500;padding:7px 12px;border-radius:8px;transition:.2s;}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08);}
+.nav-cta{background:#1db954;color:#000;font-weight:800;font-size:.8rem;padding:9px 18px;border-radius:50px;text-decoration:none;transition:.2s;}
+.nav-cta:hover{background:#4ade80;}
+
+/* HERO */
+.hero{min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:60px 24px;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#020f06 0%,#05200d 45%,#071a30 100%);}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(29,185,84,.18) 0%,transparent 70%);top:-100px;right:-100px;animation:pulse 5s ease-in-out infinite;}
+.hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(29,185,84,.1) 0%,transparent 70%);bottom:-80px;left:-60px;animation:pulse 7s ease-in-out infinite reverse;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.15);opacity:1}}
+.hero-inner{position:relative;z-index:2;max-width:680px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(29,185,84,.12);border:1px solid rgba(29,185,84,.3);color:#1db954;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:22px;}
+.hero-h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1.08;margin-bottom:8px;color:#fff;}
+.hero-h1 .green{color:#1db954;}
+.hero-sub{font-size:1.1rem;color:#1db954;font-weight:700;margin-bottom:18px;letter-spacing:.03em;}
+.hero-p{color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.75;margin-bottom:14px;max-width:520px;}
+.hero-highlight{background:rgba(29,185,84,.08);border:1px solid rgba(29,185,84,.25);border-radius:12px;padding:14px 18px;margin-bottom:30px;display:inline-block;}
+.hero-highlight p{color:#4ade80;font-weight:700;font-size:.88rem;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
+.btn-g{background:#1db954;color:#000;font-weight:800;padding:13px 26px;border-radius:50px;text-decoration:none;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:.2s;border:none;cursor:pointer;}
+.btn-g:hover{background:#4ade80;transform:translateY(-2px);}
+.btn-o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);font-weight:700;padding:13px 26px;border-radius:50px;text-decoration:none;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:.2s;cursor:pointer;}
+.btn-o:hover{border-color:#1db954;color:#1db954;transform:translateY(-2px);}
+.hero-stats{display:flex;gap:36px;}
+.stat-n{font-size:1.7rem;font-weight:900;color:#1db954;}
+.stat-l{font-size:.72rem;color:rgba(255,255,255,.5);font-weight:500;margin-top:2px;}
+.phones{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap;}
+.phone-chip{display:flex;align-items:center;gap:8px;background:rgba(29,185,84,.12);border:1px solid rgba(29,185,84,.25);border-radius:50px;padding:8px 16px;color:#4ade80;font-weight:700;font-size:.85rem;}
+
+/* TRUST */
+.trust{background:#050f07;border-top:1px solid #111;border-bottom:1px solid #111;padding:18px 24px;}
+.trust-inner{display:flex;flex-wrap:wrap;justify-content:space-around;gap:16px;}
+.trust-item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.6);font-size:.8rem;}
+.trust-item span{color:#1db954;font-size:1rem;}
+
+/* SECTION BASE */
+section{padding:80px 24px;}
+.s-label{display:inline-block;background:rgba(29,185,84,.15);border:1px solid rgba(29,185,84,.3);color:#1db954;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:12px;}
+.s-title{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:8px;}
+.s-title .g{color:#1db954;}
+.s-sub{color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.7;max-width:560px;}
+
+/* SERVICES */
+#servicios{background:#040d06;}
+.s-center{text-align:center;margin-bottom:50px;}
+.s-center .s-sub{margin:0 auto;}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;}
+.srv-card{background:#0a1a0c;border:1px solid #1a2e1c;border-radius:16px;padding:28px 22px;transition:.3s;position:relative;overflow:hidden;}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#1db954,#4ade80);transform:scaleX(0);transform-origin:left;transition:.3s;}
+.srv-card:hover{border-color:#1db954;transform:translateY(-6px);}
+.srv-card:hover::before{transform:scaleX(1);}
+.srv-ico{font-size:2rem;margin-bottom:16px;}
+.srv-card h3{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:8px;}
+.srv-card p{color:rgba(255,255,255,.5);font-size:.8rem;line-height:1.6;}
+
+/* ABOUT */
+#nosotros{background:#020a03;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.about-img{border-radius:18px;overflow:hidden;position:relative;border:1px solid #1a2e1c;}
+.about-img img{width:100%;height:360px;object-fit:cover;display:block;}
+.about-badge{position:absolute;bottom:-14px;right:-14px;background:#1db954;color:#000;border-radius:14px;padding:18px 20px;text-align:center;}
+.about-badge .n{font-size:2rem;font-weight:900;}
+.about-badge .l{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+.about-text .s-title{margin-bottom:14px;}
+.about-text > p{color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:28px;font-size:.92rem;}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:30px;}
+.feat{display:flex;align-items:flex-start;gap:10px;}
+.feat-i{width:34px;height:34px;border-radius:10px;background:rgba(29,185,84,.12);color:#1db954;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;margin-top:2px;}
+.feat h4{color:#fff;font-size:.83rem;font-weight:700;margin-bottom:3px;}
+.feat p{color:rgba(255,255,255,.45);font-size:.75rem;}
+
+/* PROJECTS */
+#proyectos{background:#030b04;}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.proj-card{border-radius:14px;overflow:hidden;position:relative;height:220px;cursor:pointer;border:1px solid #1a2e1c;}
+.proj-card img{width:100%;height:100%;object-fit:cover;transition:.5s;}
+.proj-card:hover img{transform:scale(1.07);}
+.proj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,transparent 55%);opacity:0;transition:.3s;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;}
+.proj-card:hover .proj-ov{opacity:1;}
+.proj-tag{position:absolute;top:12px;left:12px;background:#1db954;color:#000;font-size:.65rem;font-weight:800;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.06em;}
+.proj-ov h3{color:#fff;font-size:.95rem;font-weight:800;margin-bottom:4px;}
+.proj-ov p{color:rgba(255,255,255,.65);font-size:.78rem;}
+
+/* CALCULATOR */
+#calculadora{background:#040d06;}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+.calc-box{background:#0a1a0c;border:1px solid #1a2e1c;border-radius:18px;padding:34px;}
+.calc-box h3{color:#fff;font-weight:800;font-size:1.1rem;margin-bottom:24px;display:flex;align-items:center;gap:8px;}
+.calc-box h3 span{color:#1db954;}
+.fg{margin-bottom:18px;}
+.fg label{display:block;color:rgba(255,255,255,.6);font-size:.78rem;font-weight:600;margin-bottom:6px;}
+.fg input,.fg select{width:100%;background:#0d2211;border:1.5px solid #1a3a1f;border-radius:10px;color:#fff;padding:11px 14px;font-size:.88rem;outline:none;transition:.2s;}
+.fg input:focus,.fg select:focus{border-color:#1db954;}
+.fg select option{background:#0a1a0c;}
+.rw{position:relative;padding-top:20px;}
+.rv{position:absolute;top:0;right:0;color:#1db954;font-size:.78rem;font-weight:700;}
+input[type=range]{-webkit-appearance:none;height:5px;border-radius:3px;background:linear-gradient(to right,#1db954 0%,#1a3a1f 0%);width:100%;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#1db954;cursor:pointer;}
+.result-box{background:linear-gradient(135deg,#051508,#071a30);border:1px solid #1a3a1f;border-radius:14px;padding:22px;margin-top:20px;display:none;}
+.result-box.show{display:block;}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ri{background:rgba(255,255,255,.05);border-radius:10px;padding:14px;text-align:center;}
+.ri .rn{font-size:1.6rem;font-weight:900;color:#1db954;}
+.ri .rl{font-size:.68rem;color:rgba(255,255,255,.45);margin-top:3px;text-transform:uppercase;letter-spacing:.06em;}
+
+/* TESTIMONIALS */
+#testimonios{background:#020a03;}
+.t-center{text-align:center;margin-bottom:44px;}
+.t-center .s-sub{margin:0 auto;}
+.slider-outer{position:relative;overflow:hidden;}
+.slider-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.slide{flex:0 0 100%;padding:0 30px;}
+.tcard{background:#0a1a0c;border:1px solid #1a2e1c;border-radius:18px;padding:36px;max-width:620px;margin:0 auto;text-align:center;position:relative;}
+.tcard::before{content:'\201C';font-size:4rem;color:#1db954;opacity:.2;position:absolute;top:10px;left:24px;font-family:Georgia,serif;line-height:1;}
+.stars{color:#f4a201;font-size:1.1rem;margin-bottom:16px;}
+.tcard > p{color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.8;font-style:italic;margin-bottom:22px;}
+.reviewer{display:flex;align-items:center;gap:12px;justify-content:center;}
+.av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#1db954,#4ade80);display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:.95rem;}
+.rv-info h4{color:#fff;font-weight:700;font-size:.88rem;}
+.rv-info small{color:rgba(255,255,255,.4);font-size:.75rem;}
+.s-nav{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:26px;}
+.s-dot{width:9px;height:9px;border-radius:50%;background:#1a2e1c;border:none;cursor:pointer;transition:.2s;padding:0;}
+.s-dot.active{background:#1db954;transform:scale(1.3);}
+.s-btn{width:38px;height:38px;border-radius:50%;border:1px solid #1a2e1c;background:transparent;color:rgba(255,255,255,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:.2s;}
+.s-btn:hover{background:#1db954;border-color:#1db954;color:#000;}
+
+/* CONTACT */
+#contacto{background:#030b04;}
+.cont-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:50px;align-items:start;}
+.cont-info .s-title{margin-bottom:14px;}
+.cont-info > p{color:rgba(255,255,255,.55);font-size:.88rem;line-height:1.75;margin-bottom:30px;}
+.c-items{display:flex;flex-direction:column;gap:16px;}
+.ci{display:flex;align-items:center;gap:12px;}
+.ci-ico{width:40px;height:40px;border-radius:11px;background:rgba(29,185,84,.12);color:#1db954;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.ci h4{color:rgba(255,255,255,.4);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:2px;}
+.ci p{color:#fff;font-size:.9rem;}
+.cont-form{background:#0a1a0c;border:1px solid #1a2e1c;border-radius:18px;padding:36px;}
+.cont-form h3{color:#fff;font-weight:800;font-size:1.1rem;margin-bottom:24px;}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cont-form .fg input,.cont-form .fg textarea{width:100%;background:#0d2211;border:1.5px solid #1a3a1f;border-radius:10px;color:#fff;padding:11px 14px;font-size:.85rem;outline:none;transition:.2s;font-family:inherit;}
+.cont-form .fg textarea{resize:vertical;min-height:100px;}
+.cont-form .fg input:focus,.cont-form .fg textarea:focus{border-color:#1db954;}
+.ferr{color:#f87171;font-size:.72rem;margin-top:4px;display:none;}
+.fsuc{background:rgba(29,185,84,.1);border:1px solid #1db954;color:#4ade80;border-radius:10px;padding:12px 16px;font-size:.82rem;font-weight:600;display:none;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#020602;border-top:1px solid #0f1f10;padding:50px 24px 24px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:40px;}
+.fb-brand p{color:rgba(255,255,255,.4);font-size:.82rem;line-height:1.7;margin:12px 0 18px;}
+.socials{display:flex;gap:8px;}
+.soc{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;color:#fff;transition:.2s;font-weight:800;}
+.soc:hover{transform:translateY(-3px);}
+.fc h4{color:#fff;font-size:.85rem;font-weight:800;margin-bottom:14px;}
+.fc ul{list-style:none;}
+.fc ul li{margin-bottom:8px;}
+.fc ul li a{color:rgba(255,255,255,.4);text-decoration:none;font-size:.8rem;transition:.2s;}
+.fc ul li a:hover{color:#1db954;}
+.fci{display:flex;align-items:flex-start;gap:8px;margin-bottom:12px;}
+.fci span{color:rgba(255,255,255,.4);font-size:.8rem;line-height:1.5;}
+.fmap{border-radius:10px;overflow:hidden;height:120px;border:1px solid #1a2e1c;margin-top:6px;}
+.fmap iframe{width:100%;height:100%;border:none;}
+.fb-bot{border-top:1px solid #0f1f10;padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.fb-bot p{color:rgba(255,255,255,.25);font-size:.75rem;}
+.fb-bot a{color:#1db954;text-decoration:none;}
+</style>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    <div class="nav-logo-text">
+      <strong>ECOBRACIV</strong>
+      <small>S.A.S – Suministros Ecológicos</small>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a href="#contacto" class="nav-cta">📋 Solicitar Cotización</a>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🌱 Energía 100% Renovable · Colombia</div>
+    <h1 class="hero-h1">Soluciones Integrales para un<br><span class="green">Futuro Sostenible</span><br>y Eficiente</h1>
+    <p class="hero-sub">ENERGÍA LIMPIA PARA UN MEJOR MAÑANA</p>
+    <p class="hero-p">En <strong>ECOBRACIV S.A.S.</strong> combinamos tecnología avanzada con una profunda experiencia y un compromiso con el medio ambiente .De esta manera, ofrecemos soluciones responsables que no solo impulsan el desarrollo, sino que tambien protegen y cuidan de nuestro planeta.</p>
+    <div class="hero-highlight">
+      <p>☀ Sistemas Fotovoltaicos · 🏗 Obra Civil · 🔧 Mantenimientos · ♻ Recolección de Residuos · ⚙ Metalmecánica</p>
+    </div>
+    <div class="hero-btns">
+      <button class="btn-g" onclick="scrollTo('#contacto')">📋 Cotizar Ahora</button>
+      <button class="btn-o" onclick="scrollTo('#servicios')">⚡ Nuestros Servicios</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">+500</div><div class="stat-l">Proyectos completados</div></div>
+      <div><div class="stat-n">10+</div><div class="stat-l">Años de experiencia</div></div>
+      <div><div class="stat-n">98%</div><div class="stat-l">Clientes satisfechos</div></div>
+    </div>
+    <div class="phones">
+      <div class="phone-chip">📞 302 344 4820</div>
+      <div class="phone-chip">📞 320 973 2662</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><span>🏆</span> Certificados RETIE</div>
+    <div class="trust-item"><span>🌱</span> Compromiso Ambiental</div>
+    <div class="trust-item"><span>🛡</span> Calidad y Seguridad</div>
+    <div class="trust-item"><span>👥</span> Equipo Experto</div>
+    <div class="trust-item"><span>📈</span> Resultados Confiables</div>
+    <div class="trust-item"><span>⚡</span> Energía Renovable</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="s-center">
+    <div class="s-label">Lo que hacemos</div>
+    <h2 class="s-title">Nuestros <span class="g">Servicios</span></h2>
+    <p class="s-sub">Soluciones integrales que combinan tecnología, experiencia y compromiso ambiental.</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card">
+      <div class="srv-ico">☀</div>
+      <h3>Sistemas Fotovoltaicos</h3>
+      <p>Energía solar para hogares, empresas y proyectos industriales. Diseño, instalación y puesta en marcha.</p>
+    </div>
+    <div class="srv-card">
+      <div class="srv-ico">🏗</div>
+      <h3>Obra Civil</h3>
+      <p>Construimos infraestructura con calidad, seguridad y sostenibilidad. Proyectos a la medida de tus necesidades.</p>
+    </div>
+    <div class="srv-card">
+      <div class="srv-ico">🔧</div>
+      <h3>Mantenimientos y Montajes</h3>
+      <p>Mantenimiento preventivo y correctivo de sistemas eléctricos y estructurales. Garantizamos el óptimo funcionamiento.</p>
+    </div>
+    <div class="srv-card">
+      <div class="srv-ico">♻</div>
+      <h3>Recolección de Residuos</h3>
+      <p>Gestión responsable de residuos para un entorno más limpio y saludable. Comprometidos con el medio ambiente.</p>
+    </div>
+    <div class="srv-card">
+      <div class="srv-ico">⚙</div>
+      <h3>Metalmecánica</h3>
+      <p>Fabricación, montaje y mantenimiento de estructuras metálicas con los más altos estándares de calidad.</p>
+    </div>
+    <div class="srv-card">
+      <div class="srv-ico">🌱</div>
+      <h3>Asesoría Energética</h3>
+      <p>Diagnóstico y consultoría para optimizar tu consumo energético e implementar soluciones sostenibles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="nosotros">
+  <div class="about-grid">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=700&q=80" alt="Técnicos ECOBRACIV instalando paneles solares"/>
+      <div class="about-badge"><div class="n">10+</div><div class="l">Años de<br>experiencia</div></div>
+    </div>
+    <div class="about-text">
+      <div class="s-label">Quiénes somos</div>
+      <h2 class="s-title">ECOBRACIV <span class="g">S.A.S</span></h2>
+      <p>Somos <strong>ECOBRACIV S.A.S. – Suministros Ecológicos y Obras Civiles</strong>, una empresa colombiana con más de 5 años de experiencia que combina tecnología, experiencia y compromiso ambiental para ofrecer soluciones responsables que generan energía, desarrollo y bienestar. Conectamos hoy para transformar el mañana.</p>
+      <div class="feats">
+        <div class="feat"><div class="feat-i">🏅</div><div><h4>Más de 10 años de experiencia</h4><p>Líderes en el sector energético y civil colombiano.</p></div></div>
+        <div class="feat"><div class="feat-i">👷</div><div><h4>Personal certificado</h4><p>Técnicos e ingenieros con certificaciones vigentes.</p></div></div>
+        <div class="feat"><div class="feat-i">⚡</div><div><h4>Tecnología de última generación</h4><p>Equipos y materiales de marcas reconocidas mundialmente.</p></div></div>
+        <div class="feat"><div class="feat-i">✅</div><div><h4>Garantía en instalaciones</h4><p>Respaldamos todos nuestros proyectos con garantía.</p></div></div>
+      </div>
+      <button class="btn-g" onclick="scrollTo('#contacto')">📞 Hablar con un experto</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="proyectos" style="background:#030b04;">
+  <div style="text-align:center;margin-bottom:46px;">
+    <div class="s-label">Portafolio</div>
+    <h2 class="s-title">Proyectos <span class="g">Destacados</span></h2>
+    <p class="s-sub" style="margin:0 auto;">Muestra de nuestros trabajos en toda Colombia.</p>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=700&q=80" alt="Panel solar residencial"/>
+      <div class="proj-tag">Fotovoltaico</div>
+      <div class="proj-ov"><h3>Sistema Fotovoltaico – Bogotá</h3><p>6.5 kWp · 15 paneles · Ahorro 85% factura</p></div>
+    </div>
+    <div class="proj-card">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Obra civil"/>
+      <div class="proj-tag">Obra Civil</div>
+      <div class="proj-ov"><h3>Infraestructura Civil – Medellín</h3><p>Construcción con estándares de calidad y seguridad</p></div>
+    </div>
+    <div class="proj-card">
+      <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80" alt="Mantenimiento eléctrico"/>
+      <div class="proj-tag">Mantenimiento</div>
+      <div class="proj-ov"><h3>Mantenimiento Industrial – Cali</h3><p>Sistemas eléctricos y estructurales · Garantía</p></div>
+    </div>
+    <div class="proj-card">
+      <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Planta industrial solar"/>
+      <div class="proj-tag">Industrial</div>
+      <div class="proj-ov"><h3>Planta Solar Industrial – Barranquilla</h3><p>250 kWp · 600 paneles · ROI 4 años</p></div>
+    </div>
+    <div class="proj-card">
+      <img src="https://images.unsplash.com/photo-1611270418597-a6c77f4b7271?w=700&q=80" alt="Recolección residuos"/>
+      <div class="proj-tag">Residuos</div>
+      <div class="proj-ov"><h3>Gestión de Residuos – Boyacá</h3><p>Recolección responsable · 40 comunidades</p></div>
+    </div>
+    <div class="proj-card">
+      <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=700&q=80" alt="Estructura metálica"/>
+      <div class="proj-tag">Metalmecánica</div>
+      <div class="proj-ov"><h3>Estructuras Metálicas – Valle del Cauca</h3><p>Fabricación y montaje · Alta precisión</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculadora">
+  <div class="calc-grid">
+    <div>
+      <div class="s-label">Herramienta</div>
+      <h2 class="s-title">Calculadora <span class="g">Solar</span></h2>
+      <p class="s-sub" style="margin-bottom:28px;">Descubre cuántos paneles solares necesitas y cuánto puedes ahorrar. Ingresa tu consumo y obtén una estimación instantánea.</p>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:30px;height:30px;border-radius:50%;background:#1db954;color:#000;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;flex-shrink:0;">1</div><p style="color:rgba(255,255,255,.55);font-size:.85rem;padding-top:5px;">Revisa tu factura de energía y anota el consumo mensual en kWh.</p></div>
+        <div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:30px;height:30px;border-radius:50%;background:#1db954;color:#000;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;flex-shrink:0;">2</div><p style="color:rgba(255,255,255,.55);font-size:.85rem;padding-top:5px;">Selecciona tu ciudad y tipo de instalación deseada.</p></div>
+        <div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:30px;height:30px;border-radius:50%;background:#1db954;color:#000;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;flex-shrink:0;">3</div><p style="color:rgba(255,255,255,.55);font-size:.85rem;padding-top:5px;">Obtén el número de paneles y el ahorro mensual estimado.</p></div>
+      </div>
+      <div style="margin-top:32px;background:#0a1a0c;border:1px solid #1a2e1c;border-radius:14px;padding:22px;">
+        <p style="color:#1db954;font-weight:800;font-size:.9rem;margin-bottom:10px;">📞 Contáctanos para una cotización exacta:</p>
+        <p style="color:#fff;font-size:1rem;font-weight:700;">302 344 4820</p>
+        <p style="color:#fff;font-size:1rem;font-weight:700;">320 973 2662</p>
+      </div>
+    </div>
+    <div class="calc-box">
+      <h3>☀ Calcula tu sistema <span>solar</span></h3>
+      <div class="fg">
+        <label>Consumo mensual (kWh)</label>
+        <div class="rw">
+          <span class="rv" id="cval">300 kWh</span>
+          <input type="range" id="consumo" min="50" max="2000" value="300" step="10" oninput="updateRange()"/>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Tarifa eléctrica ($/kWh)</label>
+        <input type="number" id="tarifa" value="700" min="100" placeholder="Ej: 700"/>
+      </div>
+      <div class="fg">
+        <label>Ciudad / Región</label>
+        <select id="ciudad">
+          <option value="4.5">Bogotá (4.5 HSP)</option>
+          <option value="5.0">Medellín (5.0 HSP)</option>
+          <option value="5.5">Cali (5.5 HSP)</option>
+          <option value="6.0">Barranquilla (6.0 HSP)</option>
+          <option value="5.2">Bucaramanga (5.2 HSP)</option>
+          <option value="4.8">Otra ciudad (4.8 HSP)</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Tipo de instalación</label>
+        <select id="tipo">
+          <option value="on">On-grid (conectado a la red)</option>
+          <option value="off">Off-grid (autónomo con baterías)</option>
+          <option value="hibrido">Híbrido (on-grid + baterías)</option>
+        </select>
+      </div>
+      <button class="btn-g" style="width:100%;justify-content:center;" onclick="calcular()">🔢 Calcular ahora</button>
+      <div class="result-box" id="resBox">
+        <div class="rg">
+          <div class="ri"><div class="rn" id="rP">–</div><div class="rl">Paneles necesarios</div></div>
+          <div class="ri"><div class="rn" id="rA">–</div><div class="rl">Ahorro mensual</div></div>
+          <div class="ri"><div class="rn" id="rK">–</div><div class="rl">Potencia (kWp)</div></div>
+          <div class="ri"><div class="rn" id="rAn">–</div><div class="rl">Ahorro anual</div></div>
+        </div>
+        <p style="color:rgba(255,255,255,.35);font-size:.72rem;text-align:center;margin-top:14px;">* Estimación referencial. Contáctanos para cotización exacta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonios">
+  <div class="t-center">
+    <div class="s-label">Testimonios</div>
+    <h2 class="s-title">Lo que dicen nuestros <span class="g">clientes</span></h2>
+    <p class="s-sub">Cientos de familias y empresas confían en ECOBRACIV para sus proyectos energéticos.</p>
+  </div>
+  <div class="slider-outer">
+    <div class="slider-track" id="sTrack">
+      <div class="slide">
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <p>Desde que instalamos el sistema fotovoltaico con ECOBRACIV nuestra factura bajó un 82%. El equipo fue muy profesional durante toda la instalación y nos explicaron cada detalle del proceso. Totalmente recomendados.</p>
+          <div class="reviewer"><div class="av">CM</div><div class="rv-info"><h4>Carlos Martínez</h4><small>Propietario residencial – Bogotá</small></div></div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <p>Contratamos a ECOBRACIV para la obra civil de nuestra planta y el resultado superó nuestras expectativas. Cumplieron todos los plazos, los materiales de primera calidad y el equipo muy organizado.</p>
+          <div class="reviewer"><div class="av">LP</div><div class="rv-info"><h4>Laura Patiño</h4><small>Gerente de Operaciones – Medellín</small></div></div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="tcard">
+          <div class="stars">★★★★★</div>
+          <p>El servicio de recolección de residuos y el mantenimiento de nuestros sistemas eléctricos han sido impecables. ECOBRACIV demuestra compromiso real con el medio ambiente y la calidad del trabajo.</p>
+          <div class="reviewer"><div class="av">JR</div><div class="rv-info"><h4>Jorge Rodríguez</h4><small>Administrador – Centro Comercial, Cali</small></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="s-nav">
+      <button class="s-btn" onclick="prevS()">◀</button>
+      <button class="s-dot active" onclick="goS(0)"></button>
+      <button class="s-dot" onclick="goS(1)"></button>
+      <button class="s-dot" onclick="goS(2)"></button>
+      <button class="s-btn" onclick="nextS()">▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto">
+  <div class="cont-grid">
+    <div class="cont-info">
+      <div class="s-label">Contáctanos</div>
+      <h2 class="s-title">Hablemos de tu <span class="g">proyecto</span></h2>
+      <p>Agenda una visita técnica gratuita. Evaluamos tu necesidad y te presentamos una propuesta sin compromiso en 48 horas. Conectamos hoy, transformamos el mañana.</p>
+      <div class="c-items">
+        <div class="ci"><div class="ci-ico">📞</div><div><h4>Teléfono</h4><p>302 344 4820</p></div></div>
+        <div class="ci"><div class="ci-ico">📱</div><div><h4>Celular</h4><p>320 973 2662</p></div></div>
+        <div class="ci"><div class="ci-ico">💬</div><div><h4>WhatsApp</h4><p>302 344 4820 / 320 973 2662</p></div></div>
+        <div class="ci"><div class="ci-ico">✉</div><div><h4>Correo</h4><p>info@ecobraciv.com.co</p></div></div>
+        <div class="ci"><div class="ci-ico">📍</div><div><h4>Dirección</h4><p>Bogotá, D.C., Colombia</p></div></div>
+      </div>
+    </div>
+    <div class="cont-form">
+      <h3>Solicita tu cotización gratuita</h3>
+      <div class="fr">
+        <div class="fg"><label>Nombre completo *</label><input type="text" id="cN" placeholder="Tu nombre"/><div class="ferr" id="eN">Ingresa tu nombre.</div></div>
+        <div class="fg"><label>Correo electrónico *</label><input type="email" id="cE" placeholder="tu@correo.com"/><div class="ferr" id="eE">Correo no válido.</div></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>Teléfono *</label><input type="tel" id="cT" placeholder="300 000 0000"/><div class="ferr" id="eT">Ingresa tu teléfono.</div></div>
+        <div class="fg"><label>Tipo de servicio</label><input type="text" id="cS" placeholder="Solar / Obra Civil / Otro"/></div>
+      </div>
+      <div class="fg"><label>Mensaje *</label><textarea id="cM" placeholder="Cuéntanos tu proyecto, consumo mensual, ubicación..."></textarea><div class="ferr" id="eM">Escribe tu mensaje.</div></div>
+      <button class="btn-g" style="width:100%;justify-content:center;" onclick="enviar()">✉ Enviar mensaje</button>
+      <div class="fsuc" id="fSuc">✅ ¡Mensaje enviado! Nos contactaremos en menos de 24 horas. — ECOBRACIV S.A.S.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="fb-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+        <div style="width:38px;height:38px;background:linear-gradient(135deg,#1db954,#4ade80);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🌿</div>
+        <div><strong style="color:#fff;font-size:.9rem;display:block;">ECOBRACIV S.A.S.</strong><small style="color:#1db954;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;">Suministros Ecológicos y Obras Civiles</small></div>
+      </div>
+      <p>Transformamos la energía solar y las obras civiles en bienestar para tu hogar, empresa y el planeta. Conectamos hoy para transformar el mañana.</p>
+      <div class="socials">
+        <a href="#" class="soc" style="background:#1877f2;">f</a>
+        <a href="#" class="soc" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);">📷</a>
+        <a href="#" class="soc" style="background:#25d366;">💬</a>
+        <a href="#" class="soc" style="background:#ff0000;">▶</a>
+      </div>
+    </div>
+    <div class="fc">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Sistemas Fotovoltaicos</a></li>
+        <li><a href="#servicios">Obra Civil</a></li>
+        <li><a href="#servicios">Mantenimientos</a></li>
+        <li><a href="#servicios">Recolección Residuos</a></li>
+        <li><a href="#servicios">Metalmecánica</a></li>
+        <li><a href="#servicios">Asesoría Energética</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#calculadora">Calculadora Solar</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Contacto</h4>
+      <div class="fci"><span>📞</span><span>302 344 4820</span></div>
+      <div class="fci"><span>📱</span><span>320 973 2662</span></div>
+      <div class="fci"><span>✉</span><span>info@ecobraciv.com.co</span></div>
+      <div class="fci"><span>📍</span><span>Bogotá, D.C., Colombia</span></div>
+      <div class="fmap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254508.57064960044!2d-74.24749679648437!3d4.648285815737919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bfd2da6cb29%3A0x239d635520a33914!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2sco!4v1700000000000!5m2!1ses!2sco" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="fb-bot">
+    <p>© 2025 ECOBRACIV S.A.S. – Todos los derechos reservados.</p>
+    <p>Desarrollado con 🌿 para <a href="#">ECOBRACIV Digital</a></p>
+  </div>
+</footer>
+
+<script>
+function scrollTo(id){document.querySelector(id).scrollIntoView({behavior:'smooth'});}
+
+function updateRange(){
+  const s=document.getElementById('consumo');
+  const v=parseInt(s.value);
+  document.getElementById('cval').textContent=v+' kWh';
+  const pct=((v-50)/(2000-50))*100;
+  s.style.background=`linear-gradient(to right,#1db954 ${pct}%,#1a3a1f ${pct}%)`;
+}
+
+function calcular(){
+  const c=parseFloat(document.getElementById('consumo').value)||300;
+  const t=parseFloat(document.getElementById('tarifa').value)||700;
+  const h=parseFloat(document.getElementById('ciudad').value)||4.5;
+  const tp=document.getElementById('tipo').value;
+  const ef=tp==='off'?0.75:tp==='hibrido'?0.82:0.9;
+  const genPanel=0.4*h*30*ef;
+  const paneles=Math.ceil(c/genPanel);
+  const kwp=(paneles*0.4).toFixed(1);
+  const gen=paneles*genPanel;
+  const ahorro=Math.min(gen,c)*t;
+  const anual=ahorro*12;
+  document.getElementById('rP').textContent=paneles;
+  document.getElementById('rA').textContent='$'+Math.round(ahorro).toLocaleString('es-CO');
+  document.getElementById('rK').textContent=kwp+' kWp';
+  document.getElementById('rAn').textContent='$'+Math.round(anual).toLocaleString('es-CO');
+  document.getElementById('resBox').classList.add('show');
+}
+
+let si=0;
+const st=document.getElementById('sTrack');
+const dots=document.querySelectorAll('.s-dot');
+function goS(n){si=n;st.style.transform=`translateX(-${si*100}%)`;dots.forEach((d,i)=>d.classList.toggle('active',i===si));}
+function nextS(){goS((si+1)%3);}
+function prevS(){goS((si+2)%3);}
+setInterval(nextS,5000);
+
+function enviar(){
+  let ok=true;
+  const n=document.getElementById('cN');
+  const e=document.getElementById('cE');
+  const t=document.getElementById('cT');
+  const m=document.getElementById('cM');
+  const sh=(id,v)=>{document.getElementById(id).style.display=v?'block':'none';};
+  if(!n.value.trim()||n.value.trim().length<2){sh('eN',true);ok=false;}else sh('eN',false);
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value)){sh('eE',true);ok=false;}else sh('eE',false);
+  if(!t.value.trim()||t.value.trim().length<7){sh('eT',true);ok=false;}else sh('eT',false);
+  if(!m.value.trim()||m.value.trim().length<10){sh('eM',true);ok=false;}else sh('eM',false);
+  if(ok){
+    const s=document.getElementById('fSuc');
+    s.style.display='block';
+    n.value='';e.value='';t.value='';document.getElementById('cS').value='';m.value='';
+    setTimeout(()=>s.style.display='none',6000);
+  }
+}
+</script>
+
